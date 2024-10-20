@@ -64,5 +64,11 @@ public class PlayerAnimationTriggers : MonoBehaviour
         //sets how long the movement lasts
         player.ActionMovement(player.attackDetails.swordLightGroundAttacks[comboCounter].attackSpeed);
     }
+
+    private void ThrowHammer()
+    {
+        SkillManager.instance.mjolnir_skill.CreateHammer();
+        //player.swordModel.SetActive(false);
+    }
     #endregion
 }

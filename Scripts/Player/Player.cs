@@ -14,6 +14,13 @@ public class Player : Entity
     public PlayerWallSlideState WallSlideState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerDashState DashState { get; private set; }
+    public PlayerAimMjolnirState AimMjolnirState { get; private set; }
+    public PlayerCatchMjolnirState CatchMjolnirState { get; private set; }
+    #endregion
+
+    #region Components
+    public SkillManager skill { get; private set; }
+    public GameObject hammer { get; private set; }
     #endregion
 
     #region Settings
@@ -41,7 +48,10 @@ public class Player : Entity
         WallSlideState = new PlayerWallSlideState(this, StateMachine, "WallSlide");
         WallJumpState = new PlayerWallJumpState(this, StateMachine, "Jump");
         DashState = new PlayerDashState(this, StateMachine, "Dash");
+        AimMjolnirState = new PlayerAimMjolnirState(this, StateMachine, "Aim");
+        CatchMjolnirState = new PlayerCatchMjolnirState();
         StateMachine.Initialize(IdleState);
+        skill = SkillManager.instance;
     }
 
     private void Update()
@@ -55,8 +65,18 @@ public class Player : Entity
         StateMachine.currentState.FixedUpdate();
     }
 
+
+    public void AssignNewHammer(GameObject _newHammer)
+    {
+        hammer = _newHammer;
+    }
+
     public void AnimationTrigger() => StateMachine.currentState.AnimationFinishTrigger();
 
     public void ActionMovement(float speed) => StateMachine.currentState.ActionMovement(speed);
 
+    public void CatchTheHammer()
+    {
+        Debug.Log("Caught the hammer");
+    }
 }

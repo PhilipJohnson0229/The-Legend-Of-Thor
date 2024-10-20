@@ -38,5 +38,12 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.DashState);
         }
+
+        if (Input.GetMouseButtonDown(0) && HasNoHammer() /*&& player.skill.sword.swordUnlocked*/)
+        {
+            stateMachine.ChangeState(player.AimMjolnirState);
+        }
     }
+
+   
 }

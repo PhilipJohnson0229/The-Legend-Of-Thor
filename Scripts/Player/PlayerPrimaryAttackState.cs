@@ -54,12 +54,14 @@ public class PlayerPrimaryAttackState : PlayerState
 
         if (triggerCalled)
         {
+            Debug.Log($"the trigger was called during attack {comboCounter}");
             stateMachine.ChangeState(player.AttackComboState);
         }
 
         //verify the animation is complete then transition if hang up
         if ((CheckAnimName() && stateInfo.normalizedTime > 1))
         {
+            Debug.Log($"the attack timed out during attack {comboCounter}");
             stateMachine.ChangeState(player.AttackComboState);
         }
     }
@@ -68,7 +70,6 @@ public class PlayerPrimaryAttackState : PlayerState
     {
         if (stateInfo.IsName("Primary Attack 1"))
         {
-            Debug.Log("Yes this is the Primary Attack 1 state");
             return true;
         }
         else if (stateInfo.IsName("Primary Attack 2"))

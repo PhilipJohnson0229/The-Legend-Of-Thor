@@ -75,4 +75,17 @@ public class PlayerState
     {
         stateTimer = time;
     }
+
+    public bool HasNoHammer()
+    {
+
+        if (!player.hammer)
+        {
+            return true;
+        }
+
+        player.hammer.GetComponent<Mjolnir_Controller>().ReturnHammer();
+
+        return false;
+    }
 }

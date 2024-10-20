@@ -22,9 +22,11 @@ public class PlayerAttackComboState : PlayerGroundedState
 
         //combo logic
 
-        Debug.Log($"ComboCounter in combostate entry: {ComboCounter}");
-      
+        ComboCounter = player.Anim.GetInteger("ComboCounter");
+        HeavyComboCounter = player.Anim.GetInteger("HeavyComboCounter");
+
         player.Anim.SetBool("Attack", false);
+        player.Anim.SetBool("HeavyAttack", false);
 
         stateTimer = .8f;
 
@@ -57,10 +59,8 @@ public class PlayerAttackComboState : PlayerGroundedState
                 break;
         }
 
-        player.attackDetails.comboCounter = ComboCounter;
         player.Anim.SetInteger("ComboCounter", ComboCounter);
         player.Anim.SetInteger("HeavyComboCounter", HeavyComboCounter);
-        Debug.Log($"ComboCounter in combostate exit: {ComboCounter}");
     }
 
     public override void Update()
